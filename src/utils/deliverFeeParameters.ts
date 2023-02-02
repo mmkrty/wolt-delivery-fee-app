@@ -1,4 +1,4 @@
-import { TimePeriod, parameters } from "./model";
+import { TimePeriod, parameters } from "./models";
 
 export const rushHourPeriod: TimePeriod = {
   day: 5,
@@ -19,5 +19,5 @@ export const deliverParameters: parameters = {
   rushHourPeriod: rushHourPeriod,
   rushHourRate: 1.2,
   noFeeThreshold: 100,
-  deliveryMax: 15,
+  deliveryFeeMax: 15,
 };

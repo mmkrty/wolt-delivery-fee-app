@@ -9,9 +9,9 @@ import {
 
 import { deliverParameters } from "./deliverFeeParameters";
 
-import { InputData } from "./model";
+import { InputData } from "./models";
 
-const { deliveryMax } = deliverParameters;
+const { deliveryFeeMax } = deliverParameters;
 
 export const deliverFeeCalculator = (input: InputData): number => {
   const { cartFeeTotal, cartItemsTotal, deliverDistance, deliverTime } = input;
@@ -29,5 +29,5 @@ export const deliverFeeCalculator = (input: InputData): number => {
 
   deliveryFee = rushCharge(deliverTime, deliveryFee);
 
-  return checkMaxDeliveryFee(deliveryFee) ? deliveryMax : deliveryFee;
+  return checkMaxDeliveryFee(deliveryFee) ? deliveryFeeMax : deliveryFee;
 };

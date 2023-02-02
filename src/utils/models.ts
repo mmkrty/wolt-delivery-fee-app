@@ -24,5 +24,5 @@ export interface parameters {
   rushHourPeriod: TimePeriod;
   rushHourRate: number;
   noFeeThreshold: number;
-  deliveryMax: number;
+  deliveryFeeMax: number;
 }

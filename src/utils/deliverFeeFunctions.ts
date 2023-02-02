@@ -13,7 +13,7 @@ const {
   rushHourPeriod,
   rushHourRate,
   noFeeThreshold,
-  deliveryMax,
+  deliveryFeeMax,
 } = deliverParameters;
 
 export const checkNoDeliveryFee = (totalFee: number): boolean => {
@@ -21,11 +21,11 @@ export const checkNoDeliveryFee = (totalFee: number): boolean => {
 };
 
 export const checkMaxDeliveryFee = (totalDeliveryFee: number): boolean => {
-  return totalDeliveryFee >= deliveryMax;
+  return totalDeliveryFee >= deliveryFeeMax;
 };
 
 export const smallCharge = (totalFee: number): number => {
-  return totalFee < smallFee ? smallFee - smallFee : 0;
+  return totalFee < smallFee ? smallFee - totalFee : 0;
 };
 
 export const distanceCharge = (distance: number): number => {
