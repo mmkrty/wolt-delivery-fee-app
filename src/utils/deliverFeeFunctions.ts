@@ -77,3 +77,8 @@ export const rushCharge = (date: Date, totalDeliveryFee: number): number => {
     return totalDeliveryFee;
   }
 };
+
+export const checkInteger = (number: number): object => {
+  const message = Number.isInteger(number) ? "" : "Please enter an interger.";
+  return { isInteger: Number.isInteger(number), message };
+};

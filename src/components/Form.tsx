@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { InputData } from "../utils/models";
+import { InputData, Errors } from "../utils/models";
 import { deliverFeeCalculator } from "../utils/deliverFeeCalculator";
 import InputFieldNumber from "./InputFieldNumber";
 import InputFieldDate from "./InputFieldDate";
@@ -11,8 +11,17 @@ interface Props {
 }
 
 const Form: React.FC<Props> = ({ inputs, setInputs, setDeliveryFee }) => {
-  const [errorMessage, setErrorMessage] = useState<string>("");
+  //handle errors
+  const inputError: Errors = {};
+  Object.keys(inputs).forEach((key) => {
+    inputError[key] = "";
+  });
 
+  const [errors, setErrors] = useState<Errors>(inputError);
+
+  const hasError = Object.values(errors).some((val) => val);
+
+  //handle input change events
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setInputs({ ...inputs, [name]: value });
@@ -22,21 +31,11 @@ const Form: React.FC<Props> = ({ inputs, setInputs, setDeliveryFee }) => {
     setInputs({ ...inputs, deliverTime: new Date(event.target.value) });
   };
 
+  //handle form submit
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setErrorMessage("");
 
-    if (!Number.isInteger(Number(inputs.deliverDistance))) {
-      setInputs({ ...inputs, deliverDistance: 0 });
-      setErrorMessage("Invalid distance, please enter an integer");
-      return;
-    }
-
-    if (!Number.isInteger(Number(inputs.cartItemsTotal))) {
-      setInputs({ ...inputs, cartItemsTotal: 0 });
-      setErrorMessage("Invalid amount of items, please enter an integer");
-      return;
-    }
+    if (hasError) return;
 
     setDeliveryFee(deliverFeeCalculator(inputs));
 
@@ -54,19 +53,29 @@ const Form: React.FC<Props> = ({ inputs, setInputs, setDeliveryFee }) => {
         target="cartFeeTotal"
         label="Cart Value"
         value={inputs.cartFeeTotal}
+        errors={errors}
+        setErrors={setErrors}
         handleInputChange={handleInputChange}
       />
+
       <InputFieldNumber
         target="deliverDistance"
         label="Distance (meters)"
         value={inputs.deliverDistance}
+        errors={errors}
+        setErrors={setErrors}
         handleInputChange={handleInputChange}
+        integerOnly={true}
       />
+
       <InputFieldNumber
         target="cartItemsTotal"
         label="Amount of items"
         value={inputs.cartItemsTotal}
+        errors={errors}
+        setErrors={setErrors}
         handleInputChange={handleInputChange}
+        integerOnly={true}
       />
 
       <InputFieldDate
@@ -75,8 +84,6 @@ const Form: React.FC<Props> = ({ inputs, setInputs, setDeliveryFee }) => {
         value={inputs.deliverTime.toISOString().substring(0, 16)}
         handleDateChange={handleDateChange}
       />
-
-      <span className="block">{errorMessage}</span>
 
       <button type="submit" className="block">
         Calculate delivery price

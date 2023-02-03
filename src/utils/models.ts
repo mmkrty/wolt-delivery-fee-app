@@ -5,6 +5,10 @@ export interface InputData {
   deliverTime: Date;
 }
 
+export interface Errors {
+  [key: string]: string;
+}
+
 export interface TimePeriod {
   day: number;
   startHour: number;
