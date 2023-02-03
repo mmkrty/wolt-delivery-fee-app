@@ -18,6 +18,8 @@ export const deliverFeeCalculator = (input: InputData): number => {
 
   let deliveryFee = 0;
 
+  if (cartFeeTotal === 0 || cartItemsTotal === 0) return deliveryFee;
+
   if (checkNoDeliveryFee(cartFeeTotal)) return deliveryFee;
 
   deliveryFee +=
