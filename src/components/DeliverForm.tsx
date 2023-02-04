@@ -10,7 +10,11 @@ interface Props {
   setDeliveryFee: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const Form: React.FC<Props> = ({ inputs, setInputs, setDeliveryFee }) => {
+const DeliverForm: React.FC<Props> = ({
+  inputs,
+  setInputs,
+  setDeliveryFee,
+}) => {
   //handle errors
   const inputError: Errors = {};
   Object.keys(inputs).forEach((key) => {
@@ -92,4 +96,4 @@ const Form: React.FC<Props> = ({ inputs, setInputs, setDeliveryFee }) => {
   );
 };
 
-export default Form;
+export default DeliverForm;

@@ -30,11 +30,12 @@ export const smallCharge = (totalFee: number): number => {
 
 export const distanceCharge = (distance: number): number => {
   let distanceFee: number = 0;
+  let additionalUnit: number = 0;
 
   if (distance < baseDeliveryDistance) {
     distanceFee = baseDeliveryFee;
   } else {
-    let additionalUnit =
+    additionalUnit =
       (distance - baseDeliveryDistance) / additionalDeliveryDistance;
 
     if (Number.isInteger(additionalUnit)) {
@@ -63,22 +64,31 @@ export const bulkCharge = (totalItems: number): number => {
   }
 };
 
-export const rushCharge = (date: Date, totalDeliveryFee: number): number => {
+const isRushHour = (date: Date) => {
   const day = date.getUTCDay();
   const hour = date.getUTCHours();
-
   if (
     day === rushHourPeriod.day &&
     hour >= rushHourPeriod.startHour &&
     hour <= rushHourPeriod.endHour
-  ) {
-    return totalDeliveryFee * rushHourRate;
-  } else {
-    return totalDeliveryFee;
-  }
+  )
+    return true;
+
+  return false;
 };
 
-export const checkInteger = (number: number): object => {
-  const message = Number.isInteger(number) ? "" : "Please enter an interger.";
-  return { isInteger: Number.isInteger(number), message };
+export const applyRushRate = (date: Date, totalDeliveryFee: number): number => {
+  // const day = date.getUTCDay();
+  // const hour = date.getUTCHours();
+
+  // if (
+  //   day === rushHourPeriod.day &&
+  //   hour >= rushHourPeriod.startHour &&
+  //   hour <= rushHourPeriod.endHour
+  // )
+  //   return totalDeliveryFee * rushHourRate;
+
+  if (isRushHour(date)) return totalDeliveryFee * rushHourRate;
+
+  return totalDeliveryFee;
 };

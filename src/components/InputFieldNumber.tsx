@@ -37,10 +37,14 @@ const InputFieldNumber: React.FC<Props> = ({
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
 
-    if (integerOnly && !Number.isInteger(+inputValue)) {
-      setErrors({ ...errors, [target]: "Input must be integer" });
+    if (+inputValue <= 0) {
+      setErrors({ ...errors, [target]: "Please enter a positive number" });
     } else {
-      setErrors({ ...errors, [target]: "" });
+      if (integerOnly && !Number.isInteger(+inputValue)) {
+        setErrors({ ...errors, [target]: "Please enter an integer" });
+      } else {
+        setErrors({ ...errors, [target]: "" });
+      }
     }
   };
 
@@ -54,6 +58,7 @@ const InputFieldNumber: React.FC<Props> = ({
         value={value}
         onChange={handleInputChange}
         onBlur={handleBlur}
+        min="0"
         required
       />
       {errors[target] && <p style={{ color: "red" }}>{errors[target]}</p>}

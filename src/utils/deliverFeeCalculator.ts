@@ -4,7 +4,7 @@ import {
   smallCharge,
   distanceCharge,
   bulkCharge,
-  rushCharge,
+  applyRushRate,
 } from "./deliverFeeFunctions";
 
 import { deliverParameters } from "./deliverFeeParameters";
@@ -29,7 +29,7 @@ export const deliverFeeCalculator = (input: InputData): number => {
 
   if (checkMaxDeliveryFee(deliveryFee)) return deliveryFee;
 
-  deliveryFee = rushCharge(deliverTime, deliveryFee);
+  deliveryFee = applyRushRate(deliverTime, deliveryFee);
 
   return checkMaxDeliveryFee(deliveryFee) ? deliveryFeeMax : deliveryFee;
 };
