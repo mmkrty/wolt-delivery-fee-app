@@ -4,7 +4,7 @@ import "./App.css";
 
 const App: React.FC = () => {
   return (
-    <div className="flex">
+    <div className="w-screen h-screen flex justify-center items-center">
       <DeliverCalculator />
     </div>
   );

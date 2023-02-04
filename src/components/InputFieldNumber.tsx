@@ -54,11 +54,11 @@ const InputFieldNumber: React.FC<Props> = ({
       <input
         type="number"
         id={target}
-        name={target}
+        name={label}
         value={value}
         onChange={handleInputChange}
         onBlur={handleBlur}
-        min="0"
+        min={0}
         required
       />
       {errors[target] && <p style={{ color: "red" }}>{errors[target]}</p>}

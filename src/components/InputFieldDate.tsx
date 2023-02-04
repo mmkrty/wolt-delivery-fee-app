@@ -19,7 +19,7 @@ const InputFieldDate: React.FC<Props> = ({
       <input
         type="datetime-local"
         id={target}
-        name={target}
+        name={label}
         value={value}
         onChange={handleDateChange}
       />

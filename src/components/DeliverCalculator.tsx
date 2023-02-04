@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { InputData } from "../utils/models";
 import DeliverForm from "./DeliverForm";
 
-const DeliverCalculator: React.FC = () => {
+const DeliverCalculator = () => {
   const [inputs, setInputs] = useState<InputData>({
     cartFeeTotal: 0,
     cartItemsTotal: 0,

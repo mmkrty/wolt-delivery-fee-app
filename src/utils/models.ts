@@ -5,10 +5,6 @@ export interface InputData {
   deliverTime: Date;
 }
 
-export interface Errors {
-  [key: string]: string;
-}
-
 export interface TimePeriod {
   day: number;
   startHour: number;
@@ -29,4 +25,8 @@ export interface parameters {
   rushHourRate: number;
   noFeeThreshold: number;
   deliveryFeeMax: number;
+}
+
+export interface Errors {
+  [key: string]: string;
 }
