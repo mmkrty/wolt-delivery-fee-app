@@ -1,6 +1,22 @@
-# Getting Started with Create React App
+# Delivery Fee Calculator for 2023 Wolt Summer Internship.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created with [Create React App](https://github.com/facebook/create-react-app).
+
+Fore more information about the instructions of the project: [Wolt Summer 2023 Engineering Internships](https://github.com/woltapp/engineering-summer-intern-2023)
+
+<hr/>
+
+## Prerequisits
+
+This is already installed in your computer
+
+- node version 16.x
+
+In the project directory, you should run <code>npm i</code> to install all the dependencies :
+
+```
+$ npm i
+```
 
 ## Available Scripts
 

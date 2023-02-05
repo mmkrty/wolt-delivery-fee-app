@@ -96,7 +96,7 @@ const DeliverForm: React.FC<Props> = ({
 
       <button
         type="submit"
-        className="inline-block bg-[#2ED7FE] text-[#001464] font-bold py-2 my-2 rounded-md "
+        className="inline-block bg-[#2ED7FE] text-[#001464] font-bold py-2 my-2 rounded-sm "
       >
         Calculate delivery price
       </button>

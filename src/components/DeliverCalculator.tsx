@@ -23,7 +23,7 @@ const DeliverCalculator = () => {
         setDeliveryFee={setDeliveryFee}
       />
       <p className="text-xl text-center text-white">
-        Delivery price: {deliveryFee}
+        Delivery price: {deliveryFee} €
       </p>
     </div>
   );

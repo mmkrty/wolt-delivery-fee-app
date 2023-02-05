@@ -1,4 +1,4 @@
-import { TimePeriod, parameters } from "./models";
+import { TimePeriod, parameters } from "../utils/models";
 
 export const rushHourPeriod: TimePeriod = {
   day: 5,

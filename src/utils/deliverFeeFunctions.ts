@@ -1,4 +1,4 @@
-import { deliverParameters } from "./deliverFeeParameters";
+import { deliverParameters } from "../data/deliverFeeParameters";
 
 const {
   smallFee,
@@ -64,6 +64,7 @@ export const bulkCharge = (totalItems: number): number => {
 const isRushHour = (date: Date) => {
   const day = date.getUTCDay();
   const hour = date.getUTCHours();
+
   if (
     day === rushHourPeriod.day &&
     hour >= rushHourPeriod.startHour &&
@@ -75,16 +76,6 @@ const isRushHour = (date: Date) => {
 };
 
 export const applyRushRate = (date: Date, totalDeliveryFee: number): number => {
-  // const day = date.getUTCDay();
-  // const hour = date.getUTCHours();
-
-  // if (
-  //   day === rushHourPeriod.day &&
-  //   hour >= rushHourPeriod.startHour &&
-  //   hour <= rushHourPeriod.endHour
-  // )
-  //   return totalDeliveryFee * rushHourRate;
-
   if (isRushHour(date)) return totalDeliveryFee * rushHourRate;
 
   return totalDeliveryFee;

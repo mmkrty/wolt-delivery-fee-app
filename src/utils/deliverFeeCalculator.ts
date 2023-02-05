@@ -7,7 +7,7 @@ import {
   applyRushRate,
 } from "./deliverFeeFunctions";
 
-import { deliverParameters } from "./deliverFeeParameters";
+import { deliverParameters } from "../data/deliverFeeParameters";
 
 import { InputData } from "./models";
 
@@ -21,11 +21,6 @@ export const deliverFeeCalculator = (input: InputData): number => {
   if (cartFeeTotal === 0 || cartItemsTotal === 0) return deliveryFee;
 
   if (checkNoDeliveryFee(cartFeeTotal)) return deliveryFee;
-
-  console.log("deliveryFee", deliveryFee);
-  console.log("small charge", smallCharge(cartFeeTotal));
-  console.log("distance charge", distanceCharge(cartFeeTotal));
-  console.log("bulk charge", bulkCharge(cartFeeTotal));
 
   deliveryFee +=
     smallCharge(cartFeeTotal) +
