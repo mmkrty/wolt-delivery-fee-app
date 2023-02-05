@@ -27,8 +27,8 @@ const DeliverForm: React.FC<Props> = ({
 
   //handle input change events
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setInputs({ ...inputs, [name]: value });
+    const { id, value } = event.target;
+    setInputs({ ...inputs, [id]: value });
   };
 
   const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,10 +52,13 @@ const DeliverForm: React.FC<Props> = ({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white text-black flex flex-col gap-6 px-4 py-5 my-5 rounded-sm"
+    >
       <InputFieldNumber
         target="cartFeeTotal"
-        label="Cart Value"
+        label="Cart Value (€)"
         value={inputs.cartFeeTotal}
         errors={errors}
         setErrors={setErrors}
@@ -84,8 +87,10 @@ const DeliverForm: React.FC<Props> = ({
 
       <InputFieldDate
         target="deliverTime"
-        label="Time"
+        label="Time (UTC)"
         value={inputs.deliverTime.toISOString().substring(0, 16)}
+        errors={errors}
+        setErrors={setErrors}
         handleDateChange={handleDateChange}
       />
 

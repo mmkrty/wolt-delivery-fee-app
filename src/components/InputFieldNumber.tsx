@@ -1,5 +1,6 @@
 import React from "react";
 import { Errors } from "../utils/models";
+import InputError from "./InputError";
 
 interface Props {
   target: string;
@@ -49,19 +50,24 @@ const InputFieldNumber: React.FC<Props> = ({
   };
 
   return (
-    <div>
-      <label htmlFor={target}>{label}</label>
+    <div className="grid grid-rows-2 relative">
+      <label className="text-lg font-bold" htmlFor={target}>
+        {label}
+      </label>
       <input
+        className={`py-1 px-2 rounded-sm shadow border ${
+          errors[target] && "border-red-500"
+        }`}
         type="number"
         id={target}
         name={label}
         value={value}
         onChange={handleInputChange}
         onBlur={handleBlur}
-        min={0}
         required
       />
-      {errors[target] && <p style={{ color: "red" }}>{errors[target]}</p>}
+
+      {errors[target] && <InputError>{errors[target]}</InputError>}
     </div>
   );
 };
