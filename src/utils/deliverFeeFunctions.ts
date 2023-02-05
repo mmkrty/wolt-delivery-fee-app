@@ -28,23 +28,20 @@ export const smallCharge = (totalFee: number): number => {
   return totalFee < smallFee ? smallFee - totalFee : 0;
 };
 
+const additionalDistanceFee = (distance: number): number => {
+  let additionalUnit = Math.ceil(
+    (distance - baseDeliveryDistance) / additionalDeliveryDistance
+  );
+  return additionalUnit * additionalDeliveryFee;
+};
+
 export const distanceCharge = (distance: number): number => {
-  let distanceFee: number = 0;
-  let additionalUnit: number = 0;
+  let distanceFee: number = baseDeliveryFee;
 
-  if (distance < baseDeliveryDistance) {
-    distanceFee = baseDeliveryFee;
-  } else {
-    additionalUnit =
-      (distance - baseDeliveryDistance) / additionalDeliveryDistance;
+  if (distance <= baseDeliveryDistance) return distanceFee;
 
-    if (Number.isInteger(additionalUnit)) {
-      distanceFee = baseDeliveryFee + additionalUnit * additionalDeliveryFee;
-    } else {
-      distanceFee =
-        baseDeliveryFee + (additionalUnit + 1) * additionalDeliveryFee;
-    }
-  }
+  distanceFee = baseDeliveryFee + additionalDistanceFee(distance);
+
   return distanceFee;
 };
 

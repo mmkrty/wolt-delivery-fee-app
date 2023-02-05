@@ -43,12 +43,12 @@ const DeliverForm: React.FC<Props> = ({
 
     setDeliveryFee(deliverFeeCalculator(inputs));
 
-    setInputs({
-      cartFeeTotal: 0,
-      cartItemsTotal: 0,
-      deliverDistance: 0,
-      deliverTime: new Date(),
-    });
+    // setInputs({
+    //   cartFeeTotal: 0,
+    //   cartItemsTotal: 0,
+    //   deliverDistance: 0,
+    //   deliverTime: new Date(),
+    // });
   };
 
   return (
@@ -94,7 +94,10 @@ const DeliverForm: React.FC<Props> = ({
         handleDateChange={handleDateChange}
       />
 
-      <button type="submit" className="block">
+      <button
+        type="submit"
+        className="inline-block bg-[#2ED7FE] text-[#001464] font-bold py-2 my-2 rounded-md "
+      >
         Calculate delivery price
       </button>
     </form>
