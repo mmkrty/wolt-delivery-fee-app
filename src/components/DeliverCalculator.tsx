@@ -13,7 +13,7 @@ const DeliverCalculator = () => {
   const [deliveryFee, setDeliveryFee] = useState<number>(0);
 
   return (
-    <div className="bg-[#001464] font-inter py-5 px-5 mx-2 rounded-md shadow">
+    <div className="bg-[#001464] font-inter py-5 px-5 xs:mx-2 w-full h-full xs:w-96 xs:h-auto">
       <h1 className="text-[#2ED7FE] text-4xl font-pacifico text-center">
         Deliver Fee Calculator
       </h1>

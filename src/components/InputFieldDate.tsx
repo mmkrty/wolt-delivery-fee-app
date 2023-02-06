@@ -43,7 +43,7 @@ const InputFieldDate: React.FC<Props> = ({
         {label}
       </label>
       <input
-        className={`py-1 px-2 rounded-sm shadow border ${
+        className={`py-1 px-2 rounded-sm shadow border focus:outline-[#2ED7FE]${
           errors[target] && "border-red-500"
         }`}
         type="datetime-local"
