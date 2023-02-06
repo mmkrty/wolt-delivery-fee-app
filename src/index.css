@@ -1,5 +1,18 @@
+/* import google font */
 @import url("https://fonts.googleapis.com/css2?family=Inter&family=Pacifico&display=swap");
 
+/* tailwind css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* hide arrow button in number input */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  /* Firefox */
+}
