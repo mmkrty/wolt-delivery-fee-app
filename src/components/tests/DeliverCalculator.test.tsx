@@ -99,25 +99,6 @@ it("Delivery fee should be displayed correctly when given valid inputs.", async 
   expect(priceEl.length).toEqual(1);
 });
 
-// it("Delivery fee should apply rush hour rate when deliver time is during rush hour.", async () => {
-//   render(<DeliverCalculator />);
-//   const cartValueEl = screen.getByRole("spinbutton", { name: /Cart Value/i });
-//   fireEvent.input(cartValueEl, { target: { value: 8 } });
-//   const distanceEl = screen.getByRole("spinbutton", { name: /Distance/i });
-//   fireEvent.input(distanceEl, { target: { value: 1000 } });
-//   const itemsEl = screen.getByRole("spinbutton", { name: /Amount of items/i });
-//   fireEvent.input(itemsEl, { target: { value: 4 } });
-
-//   const DateTimeEl = screen.getByLabelText(/time/i);
-//   fireEvent.change(DateTimeEl, { target: { value: "2024-05-03T17:30" } });
-
-//   const submitButton = screen.getByText("Calculate delivery price");
-//   fireEvent.click(submitButton);
-
-//   const priceEl = await screen.findAllByText(/Delivery price: 4.8 €/i);
-//   expect(priceEl.length).toEqual(1);
-// });
-
 it("Delivery fee should be 0 if total cart value is equal or greater than 100€.", async () => {
   render(<DeliverCalculator />);
   const cartValueEl = screen.getByRole("spinbutton", { name: /Cart Value/i });
