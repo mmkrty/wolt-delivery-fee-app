@@ -3,6 +3,7 @@ import { InputData, Errors } from "../utils/models";
 import { deliverFeeCalculator } from "../utils/deliverFeeCalculator";
 import InputFieldNumber from "./InputFieldNumber";
 import InputFieldDate from "./InputFieldDate";
+import Button from "./Button";
 
 interface Props {
   inputs: InputData;
@@ -42,13 +43,6 @@ const DeliverForm: React.FC<Props> = ({
     if (hasError) return;
 
     setDeliveryFee(deliverFeeCalculator(inputs));
-
-    // setInputs({
-    //   cartFeeTotal: 0,
-    //   cartItemsTotal: 0,
-    //   deliverDistance: 0,
-    //   deliverTime: new Date(),
-    // });
   };
 
   return (
@@ -94,12 +88,7 @@ const DeliverForm: React.FC<Props> = ({
         handleDateChange={handleDateChange}
       />
 
-      <button
-        type="submit"
-        className="inline-block border-2 border-[#2ED7FE] text-[#001464] font-bold py-2 my-2 rounded-sm transition-all duration-300 hover:shadow-xl hover:scale-105 hover:bg-[#2ED7FE] active:scale-100 active:shadow"
-      >
-        Calculate delivery price
-      </button>
+      <Button type="submit">Calculate delivery price</Button>
     </form>
   );
 };
