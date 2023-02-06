@@ -9,6 +9,10 @@ module.exports = {
         inter: ["Inter", "sans-serif"],
         pacifico: ["Pacifico", "cursive"],
       },
+      colors: {
+        primary_light: "#2ED7FE",
+        primary_dark: "#001464",
+      },
     },
     screens: {
       xs: "384px",

@@ -16,3 +16,10 @@ input[type="number"] {
   -moz-appearance: textfield;
   /* Firefox */
 }
+
+/* reset */
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
