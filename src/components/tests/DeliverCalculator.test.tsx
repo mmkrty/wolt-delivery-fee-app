@@ -137,7 +137,7 @@ it("Delivery fee should be 0 if total cart value is equal or greater than 100€
   expect(priceEl.length).toEqual(1);
 });
 
-it("Delivery fee should be have a maximum of 15€.", async () => {
+it("Delivery fee should have a maximum of 15€.", async () => {
   render(<DeliverCalculator />);
   const cartValueEl = screen.getByRole("spinbutton", { name: /Cart Value/i });
   fireEvent.input(cartValueEl, { target: { value: 8 } });
