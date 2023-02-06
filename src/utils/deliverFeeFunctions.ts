@@ -40,9 +40,7 @@ export const distanceCharge = (distance: number): number => {
 
   if (distance <= baseDeliveryDistance) return distanceFee;
 
-  distanceFee = baseDeliveryFee + additionalDistanceFee(distance);
-
-  return distanceFee;
+  return (distanceFee += additionalDistanceFee(distance));
 };
 
 const additionalItemsCharge = (totalItems: number): number => {

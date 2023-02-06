@@ -22,7 +22,7 @@ const DeliverCalculator = () => {
         setInputs={setInputs}
         setDeliveryFee={setDeliveryFee}
       />
-      <p className="text-2xl text-center text-primary_dark">
+      <p className="text-2xl text-center font-bold text-primary_dark">
         Delivery price: {deliveryFee} €
       </p>
     </div>
