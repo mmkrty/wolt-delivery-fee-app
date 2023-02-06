@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 
 import DeliverCalculator from "./DeliverCalculator";
 
+// render tests
 it("Deliver Calculator should be rendered.", () => {
   render(<DeliverCalculator />);
   const calculatorEl = screen.getByText(/deliver fee calculator/i);
@@ -35,6 +36,13 @@ it("Date input field should be renderd.", () => {
   expect(inputEl).toBeInTheDocument();
 });
 
+it("Submit button should be renderd.", () => {
+  render(<DeliverCalculator />);
+  const submitButton = screen.getByText("Calculate delivery price");
+  expect(submitButton).toBeInTheDocument();
+});
+
+// error messages tests
 it("Error message should be displayed when a user enters number less than 1 to number inputs.", async () => {
   const listEl = ["Cart Value", "Distance", "Amount of items"];
   render(<DeliverCalculator />);
@@ -71,16 +79,60 @@ it("Error message should be displayed when a user enters previous date or time t
   expect(errorMsg.length).toEqual(1);
 });
 
-// it("Total fee should be displayed correctly.", () => {
-//   const handleSubmit = jest.fn();
+// form calculation tests
+it("Delivery fee should be displayed correctly when given valid inputs.", async () => {
+  render(<DeliverCalculator />);
+  const cartValueEl = screen.getByRole("spinbutton", { name: /Cart Value/i });
+  fireEvent.input(cartValueEl, { target: { value: 8 } });
+  const distanceEl = screen.getByRole("spinbutton", { name: /Distance/i });
+  fireEvent.input(distanceEl, { target: { value: 1000 } });
+  const itemsEl = screen.getByRole("spinbutton", { name: /Amount of items/i });
+  fireEvent.input(itemsEl, { target: { value: 4 } });
 
-//   const cartValueEl = screen.getByRole("spinbutton", { name: /Cart Value/i });
-//   fireEvent.input(cartValueEl, { target: { value: 8 } });
-//   const distanceEl = screen.getByRole("spinbutton", { name: /Distance/i });
-//   fireEvent.input(distanceEl, { target: { value: 1000 } });
-//   const itemsEl = screen.getByRole("spinbutton", { name: /Amount of items/i });
-//   fireEvent.input(itemsEl, { target: { value: 4 } });
+  const DateTimeEl = screen.getByLabelText(/time/i);
+  fireEvent.change(DateTimeEl, { target: { value: "2023-05-03T16:30" } });
 
-//   const DateTimeEl = screen.getByLabelText(/time/i);
-//   fireEvent.change(DateTimeEl, { target: { value: "2023-05-03T16:30" } });
-// });
+  const submitButton = screen.getByText("Calculate delivery price");
+  fireEvent.click(submitButton);
+
+  const priceEl = await screen.findAllByText(/Delivery price: 4 €/i);
+  expect(priceEl.length).toEqual(1);
+});
+
+it("Delivery fee should be 0 if total cart value is equal or greater than 100€.", async () => {
+  render(<DeliverCalculator />);
+  const cartValueEl = screen.getByRole("spinbutton", { name: /Cart Value/i });
+  fireEvent.input(cartValueEl, { target: { value: 100 } });
+  const distanceEl = screen.getByRole("spinbutton", { name: /Distance/i });
+  fireEvent.input(distanceEl, { target: { value: 1000 } });
+  const itemsEl = screen.getByRole("spinbutton", { name: /Amount of items/i });
+  fireEvent.input(itemsEl, { target: { value: 4 } });
+
+  const DateTimeEl = screen.getByLabelText(/time/i);
+  fireEvent.change(DateTimeEl, { target: { value: "2023-05-03T16:30" } });
+
+  const submitButton = screen.getByText("Calculate delivery price");
+  fireEvent.click(submitButton);
+
+  const priceEl = await screen.findAllByText(/Delivery price: 0 €/i);
+  expect(priceEl.length).toEqual(1);
+});
+
+it("Delivery fee should be have a maximum of 15€.", async () => {
+  render(<DeliverCalculator />);
+  const cartValueEl = screen.getByRole("spinbutton", { name: /Cart Value/i });
+  fireEvent.input(cartValueEl, { target: { value: 8 } });
+  const distanceEl = screen.getByRole("spinbutton", { name: /Distance/i });
+  fireEvent.input(distanceEl, { target: { value: 100000 } });
+  const itemsEl = screen.getByRole("spinbutton", { name: /Amount of items/i });
+  fireEvent.input(itemsEl, { target: { value: 4 } });
+
+  const DateTimeEl = screen.getByLabelText(/time/i);
+  fireEvent.change(DateTimeEl, { target: { value: "2023-05-03T16:30" } });
+
+  const submitButton = screen.getByText("Calculate delivery price");
+  fireEvent.click(submitButton);
+
+  const priceEl = await screen.findAllByText(/Delivery price: 15 €/i);
+  expect(priceEl.length).toEqual(1);
+});

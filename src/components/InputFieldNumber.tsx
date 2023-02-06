@@ -21,20 +21,6 @@ const InputFieldNumber: React.FC<Props> = ({
   errors,
   setErrors,
 }) => {
-  // const [error, setError] = React.useState<string>("");
-
-  // const handleBlur = React.useCallback(
-  //   (event: React.FocusEvent<HTMLInputElement>) => {
-  //     const inputValue = event.target.value;
-  //     if (integerOnly && !Number.isInteger(+inputValue)) {
-  //       setErrors({ ...errors, [target]: "Input must be integer" });
-  //     } else {
-  //       setErrors({ ...errors, [target]: "" });
-  //     }
-  //   },
-  //   [integerOnly, errors, setErrors, target]
-  // );
-
   const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
 

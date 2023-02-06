@@ -27,9 +27,7 @@ export const deliverFeeCalculator = (input: InputData): number => {
     distanceCharge(deliverDistance) +
     bulkCharge(cartItemsTotal);
 
-  console.log("deliveryFee", deliveryFee);
-
-  if (checkMaxDeliveryFee(deliveryFee)) return deliveryFee;
+  if (checkMaxDeliveryFee(deliveryFee)) return deliveryFeeMax;
 
   deliveryFee = applyRushRate(deliverTime, deliveryFee);
 
