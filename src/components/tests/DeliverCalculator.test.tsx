@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 
-import DeliverCalculator from "./DeliverCalculator";
+import DeliverCalculator from "../DeliverCalculator";
 
 // render tests
 it("Deliver Calculator should be rendered.", () => {

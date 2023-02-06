@@ -1,8 +1,10 @@
 # Delivery Fee Calculator for 2023 Wolt Summer Internship.
 
-This project was created with [Create React App](https://github.com/facebook/create-react-app).
+Fore more information about the instructions of the project: [Wolt Summer 2023 Engineering Internships](https://github.com/woltapp/engineering-summer-intern-2023).
 
-Fore more information about the instructions of the project: [Wolt Summer 2023 Engineering Internships](https://github.com/woltapp/engineering-summer-intern-2023)
+This is a frontend project: a delivery fee calculator web app built with React and TypeScript.
+
+This project was created with [Create React App](https://github.com/facebook/create-react-app).
 
 <hr/>
 

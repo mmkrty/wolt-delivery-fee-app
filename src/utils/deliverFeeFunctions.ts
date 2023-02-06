@@ -45,20 +45,22 @@ export const distanceCharge = (distance: number): number => {
   return distanceFee;
 };
 
+const additionalItemsCharge = (totalItems: number): number => {
+  if (totalItems <= itemsFeeThreshold) return 0;
+  return (totalItems - itemsFeeThreshold) * itemsFee;
+};
+
+const bulkItemsCharge = (totalItems: number): number => {
+  if (totalItems <= bulkFeeThreshold) return 0;
+  return bulkFee;
+};
+
 export const bulkCharge = (totalItems: number): number => {
-  let bulkCharge = 0;
+  const additionalItemsFee: number = additionalItemsCharge(totalItems);
 
-  if (totalItems < itemsFeeThreshold) {
-    return bulkCharge;
-  } else {
-    bulkCharge = (totalItems - itemsFeeThreshold) * itemsFee;
-  }
+  const bulkItemsFee: number = bulkItemsCharge(totalItems);
 
-  if (totalItems <= bulkFeeThreshold) {
-    return bulkCharge;
-  } else {
-    return bulkCharge + (totalItems - bulkFeeThreshold) * bulkFee;
-  }
+  return additionalItemsFee + bulkItemsFee;
 };
 
 const isRushHour = (date: Date) => {
